@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/main.js"></script>
+	</head>
+	<body>
+	<div id="searchSection">
+	<form action="" method="" accept-charset="utf-8">
+		<input type="text" id="query" value="{{query}}" />
+		<input type="submit" value="Search" id="search" />
+	</form>
+	<div id="results">
+	</div>
+	</div>
+	<div id="rtSection">
+		<input type="button" id="retweet" value="Retweet this search" />
+		You are currently tweeting: <span id="retweeting">{{retweeting}}</span><br/>
+		<input type="button" id="stoprt" value="Stop retweeting" />
+	</div>
+	</body>
+</html>
