@@ -1,0 +1,166 @@
+Script started on Sun Apr 10 13:52:24 2011
+bash-3.2$ script install
+Script started, output file is install
+bash-3.2$ sc[K[Kscript
+script
+bash-3.2$ script/rails 
+.DS_Store     README        config.ru     lib/          test/
+.gitignore    Rakefile      db/           log/          tmp/
+Gemfile       app/          doc/          public/       typescript
+Gemfile.lock  config/       install       script/       vendor/
+bash-3.2$ script/rails 
+.DS_Store     README        config.ru     lib/          test/
+.gitignore    Rakefile      db/           log/          tmp/
+Gemfile       app/          doc/          public/       typescript
+Gemfile.lock  config/       install       script/       vendor/
+bash-3.2$ script/rails [K[Ks/[K
+Usage: rails COMMAND [ARGS]
+
+The most common rails commands are:
+ generate    Generate new code (short-cut alias: "g")
+ console     Start the Rails console (short-cut alias: "c")
+ server      Start the Rails server (short-cut alias: "s")
+ dbconsole   Start a console for the database specified in config/database.yml
+             (short-cut alias: "db")
+ new         Create a new Rails application. "rails new my_app" creates a
+             new application called MyApp in "./my_app"
+
+In addition to those, there are:
+ application  Generate the Rails application code
+ destroy      Undo code generated with "generate"
+ benchmarker  See how fast a piece of code runs
+ profiler     Get profile information from a piece of code
+ plugin       Install a plugin
+ runner       Run a piece of code in the application environment
+
+All commands can be run with -h for more information.
+bash-3.2$ rails plugin
+Usage: plugin [OPTIONS] command
+Rails plugin manager.
+
+GENERAL OPTIONS
+  -r, --root=DIR                   Set an explicit rails app directory.
+                                   Default: /Users/kav/Projects/lyrebd/implementation/lyrebd
+  -s, --source=URL1,URL2           Use the specified plugin repositories instead of the defaults.
+  -v, --verbose                    Turn on verbose output.
+  -h, --help                       Show this help message.
+
+COMMANDS
+  install    Install plugin(s) from known repositories or URLs.
+  remove     Uninstall plugins.
+
+EXAMPLES
+  Install a plugin:
+    rails plugin install continuous_builder
+  Install a plugin from a subversion URL:
+    rails plugin install http://dev.rubyonrails.com/svn/rails/plugins/continuous_builder
+  Install a plugin from a git URL:
+    rails plugin install git://github.com/SomeGuy/my_awesome_plugin.git
+  Install a plugin and add a svn:externals entry to vendor/plugins
+    rails plugin install -x continuous_builder
+bash-3.2$ rails plugin install git://github[K[K[K[K[K[K[K[K[K[K[Kit://github.com/mbleigh/twitter-auth.git
+Initialized empty Git repository in /Users/kav/Projects/lyrebd/implementation/lyrebd/vendor/plugins/twitter-auth/.git/
+remote: Counting objects: 73, done.[K
+remote: Compressing objects:   1% (1/59)   [Kremote: Compressing objects:   3% (2/59)   [Kremote: Compressing objects:   5% (3/59)   [Kremote: Compressing objects:   6% (4/59)   [Kremote: Compressing objects:   8% (5/59)   [Kremote: Compressing objects:  10% (6/59)   [Kremote: Compressing objects:  11% (7/59)   [Kremote: Compressing objects:  13% (8/59)   [Kremote: Compressing objects:  15% (9/59)   [Kremote: Compressing objects:  16% (10/59)   [Kremote: Compressing objects:  18% (11/59)   [Kremote: Compressing objects:  20% (12/59)   [Kremote: Compressing objects:  22% (13/59)   [Kremote: Compressing objects:  23% (14/59)   [Kremote: Compressing objects:  25% (15/59)   [Kremote: Compressing objects:  27% (16/59)   [Kremote: Compressing objects:  28% (17/59)   [Kremote: Compressing objects:  30% (18/59)   [Kremote: Compressing objects:  32% (19/59)   [Kremote: Compressing objects:  33% (20/59)   [Kremote: Compressing objects:  35% (21/59)   [Kremote: Compressing objects:  37% (22/59)   [Kremote: Compressing objects:  38% (23/59)   [Kremote: Compressing objects:  40% (24/59)   [Kremote: Compressing objects:  42% (25/59)   [Kremote: Compressing objects:  44% (26/59)   [Kremote: Compressing objects:  45% (27/59)   [Kremote: Compressing objects:  47% (28/59)   [Kremote: Compressing objects:  49% (29/59)   [Kremote: Compressing objects:  50% (30/59)   [Kremote: Compressing objects:  52% (31/59)   [Kremote: Compressing objects:  54% (32/59)   [Kremote: Compressing objects:  55% (33/59)   [Kremote: Compressing objects:  57% (34/59)   [Kremote: Compressing objects:  59% (35/59)   [Kremote: Compressing objects:  61% (36/59)   [Kremote: Compressing objects:  62% (37/59)   [Kremote: Compressing objects:  64% (38/59)   [Kremote: Compressing objects:  66% (39/59)   [Kremote: Compressing objects:  67% (40/59)   [Kremote: Compressing objects:  69% (41/59)   [Kremote: Compressing objects:  71% (42/59)   [Kremote: Compressing objects:  72% (43/59)   [Kremote: Compressing objects:  74% (44/59)   [Kremote: Compressing objects:  76% (45/59)   [Kremote: Compressing objects:  77% (46/59)   [Kremote: Compressing objects:  79% (47/59)   [Kremote: Compressing objects:  81% (48/59)   [Kremote: Compressing objects:  83% (49/59)   [Kremote: Compressing objects:  84% (50/59)   [Kremote: Compressing objects:  86% (51/59)   [Kremote: Compressing objects:  88% (52/59)   [Kremote: Compressing objects:  89% (53/59)   [Kremote: Compressing objects:  91% (54/59)   [Kremote: Compressing objects:  93% (55/59)   [Kremote: Compressing objects:  94% (56/59)   [Kremote: Compressing objects:  96% (57/59)   [Kremote: Compressing objects:  98% (58/59)   [Kremote: Compressing objects: 100% (59/59)   [Kremote: Compressing objects: 100% (59/59), done.[K
+Unpacking objects:   1% (1/73)   Unpacking objects:   2% (2/73)   Unpacking objects:   4% (3/73)   Unpacking objects:   5% (4/73)   Unpacking objects:   6% (5/73)   Unpacking objects:   8% (6/73)   Unpacking objects:   9% (7/73)   Unpacking objects:  10% (8/73)   Unpacking objects:  12% (9/73)   Unpacking objects:  13% (10/73)   Unpacking objects:  15% (11/73)   Unpacking objects:  16% (12/73)   Unpacking objects:  17% (13/73)   Unpacking objects:  19% (14/73)   Unpacking objects:  20% (15/73)   Unpacking objects:  21% (16/73)   Unpacking objects:  23% (17/73)   Unpacking objects:  24% (18/73)   Unpacking objects:  26% (19/73)   Unpacking objects:  27% (20/73)   Unpacking objects:  28% (21/73)   Unpacking objects:  30% (22/73)   Unpacking objects:  31% (23/73)   Unpacking objects:  32% (24/73)   Unpacking objects:  34% (25/73)   Unpacking objects:  35% (26/73)   Unpacking objects:  36% (27/73)   Unpacking objects:  38% (28/73)   Unpacking objects:  39% (29/73)   Unpacking objects:  41% (30/73)   Unpacking objects:  42% (31/73)   Unpacking objects:  43% (32/73)   Unpacking objects:  45% (33/73)   Unpacking objects:  46% (34/73)   Unpacking objects:  47% (35/73)   Unpacking objects:  49% (36/73)   Unpacking objects:  50% (37/73)   Unpacking objects:  52% (38/73)   Unpacking objects:  53% (39/73)   Unpacking objects:  54% (40/73)   Unpacking objects:  56% (41/73)   Unpacking objects:  57% (42/73)   Unpacking objects:  58% (43/73)   Unpacking objects:  60% (44/73)   Unpacking objects:  61% (45/73)   Unpacking objects:  63% (46/73)   Unpacking objects:  64% (47/73)   Unpacking objects:  65% (48/73)   Unpacking objects:  67% (49/73)   Unpacking objects:  68% (50/73)   Unpacking objects:  69% (51/73)   Unpacking objects:  71% (52/73)   Unpacking objects:  72% (53/73)   Unpacking objects:  73% (54/73)   Unpacking objects:  75% (55/73)   Unpacking objects:  76% (56/73)   Unpacking objects:  78% (57/73)   Unpacking objects:  79% (58/73)   Unpacking objects:  80% (59/73)   Unpacking objects:  82% (60/73)   Unpacking objects:  83% (61/73)   Unpacking objects:  84% (62/73)   remote: Total 73 (delta 5), reused 34 (delta 2)[K
+Unpacking objects:  86% (63/73)   Unpacking objects:  87% (64/73)   Unpacking objects:  89% (65/73)   Unpacking objects:  90% (66/73)   Unpacking objects:  91% (67/73)   Unpacking objects:  93% (68/73)   Unpacking objects:  94% (69/73)   Unpacking objects:  95% (70/73)   Unpacking objects:  97% (71/73)   Unpacking objects:  98% (72/73)   Unpacking objects: 100% (73/73)   Unpacking objects: 100% (73/73), done.
+From git://github.com/mbleigh/twitter-auth
+ * branch            HEAD       -> FETCH_HEAD
+bash-3.2$ rails generate twitter_autho[K
+bash-3.2$ ls
+Gemfile		app		doc		public		typescript
+Gemfile.lock	config		install		script		vendor
+README		config.ru	lib		test
+Rakefile	db		log		tmp
+bash-3.2$ cd [K[K[Krake migrate
+(in /Users/kav/Projects/lyrebd/implementation/lyrebd)
+rake aborted!
+Don't know how to build task 'migrate'
+
+(See full trace by running task with --trace)
+bash-3.2$ mi[Kigrate
+bash: migrate: command not found
+bash-3.2$ rake db:migrate
+(in /Users/kav/Projects/lyrebd/implementation/lyrebd)
+bash-3.2$ cd [K[K[Kls
+Gemfile		app		doc		public		typescript
+Gemfile.lock	config		install		script		vendor
+README		config.ru	lib		test
+Rakefile	db		log		tmp
+bash-3.2$ cd app/[K[K[K[K[K[K[Kls db/
+development.sqlite3	seeds.rb
+bash-3.2$ ls app/
+controllers/ helpers/     mailers/     models/      views/       
+bash-3.2$ ls app/[K[K[K[K[K[K[Kls
+Gemfile		app		doc		public		typescript
+Gemfile.lock	config		install		script		vendor
+README		config.ru	lib		test
+Rakefile	db		log		tmp
+bash-3.2$ ls db/[Krake db:migrate[C[C[C[C[C[C[C[C[C[C[8Pmigraterake migrate[C[C[C[C[C[C[C[C[C[Cls[Krails generate twitter_auth
+bash-3.2$ ls config
+application.rb	database.yml	environments	locales
+boot.rb		environment.rb	initializers	routes.rb
+bash-3.2$ gem install oauth
+ERROR:  While executing gem ... (Gem::FilePermissionError)
+    You don't have write permissions into the /usr/bin directory.
+bash-3.2$ sudo gem install ou[Kauth
+Password:
+Successfully installed oauth-0.4.4
+1 gem installed
+Installing ri documentation for oauth-0.4.4...
+Installing RDoc documentation for oauth-0.4.4...
+bash-3.2$ rake gems:install
+(in /Users/kav/Projects/lyrebd/implementation/lyrebd)
+rake aborted!
+Don't know how to build task 'gems:install'
+
+(See full trace by running task with --trace)
+bash-3.2$ ls
+Gemfile		app		doc		public		typescript
+Gemfile.lock	config		install		script		vendor
+README		config.ru	lib		test
+Rakefile	db		log		tmp
+bash-3.2$ rake db:create
+(in /Users/kav/Projects/lyrebd/implementation/lyrebd)
+db/development.sqlite3 already exists
+bash-3.2$ rails generate scaffold m[Kuser twitter)[K_id:integer name:sr[K[K[K[K[K[K[Ksr[Kce[Kreen_name:string[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kname:string token:stri ng secret:string profile_image:string
+bash-3.2$ vim /mod[Ke[Kde[K[K[K[K[Kmoe[Kd[K[K[Kapp/models/u[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+Gemfile		app		doc		public		typescript
+Gemfile.lock	config		install		script		vendor
+README		config.ru	lib		test
+Rakefile	db		log		tmp
+bash-3.2$ cd app
+bash-3.2$ ls
+controllers	helpers		mailers		models		views
+bash-3.2$ lscd app[4Plsrails generate scaffold user twitter_id:integer name:string token:strinng secret:string profile_image:string[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C twitter_id:integer name:string token:string[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C twitter_id:integer name:string token:string [1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C twitter_id:integer name:string token:string s[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C twitter_id:integer name:string token:string se[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cm twitter_id:integer name:string token:string s[4he[4l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce twitter_id:integer name:string token:string [4hs[4l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cm twitter_id:integer name:string token:string[4h [4l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cb twitter_id:integer name:string token:strin[4hg[4l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce twitter_id:integer name:string token:stri[4hn[4l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cr twitter_id:integer name:string token:str[4hi[4l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+bash-3.2$ ls
+controllers	helpers		mailers		models		views
+bash-3.2$ cat models/
+cat: models/: Is a directory
+bash-3.2$ ls models/
+bash-3.2$ git add .
+bash-3.2$ git c[Kadd -u
+bash-3.2$ git commit
+7[?47h[?1h=[1;24r[m[H[2J[24;1H".git/COMMIT_EDITMSG" ".git/COMMIT_EDITMSG" 41L, 1074C[>c[2;1H# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       new file:   controllers/application_controller.rb
+#       new file:   controllers/signin_controller.rb
+#       new file:   helpers/application_helper.rb
+#       new file:   helpers/signin_helper.rb
+#       new file:   views/layouts/application.html.erb
+#       new file:   views/signin/index.html.erb
+#
+# Changed but not updated:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       deleted:    ../../lyrebird-bird.png
+#
+# Untracked files:[1;1H

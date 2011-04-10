@@ -1,0 +1,41 @@
+
+<div id="header">
+	<h1>Lyrebird</h1>
+	<input type="text" id="query" value="from:kavla" style="width: 300px;" />
+	<input type="button" id="search" value="search" />
+</div>
+
+<div id="results" style="height: 400px; margin: auto;">
+Put search results here.
+</div>
+<div id="status">
+you are retweeting blah blah...
+   <a href="http://yahoo.com">whooo whooo</a>
+</div>
+   <script>
+     $(document).ready(function(){
+     	 $("#results").twitterSearch({ 
+    term:   $("#query").val(), 
+    bird:    false, 
+    colorExterior: 'white', 
+    colorInterior: 'white' 
+});
+       $("#search").click(function(event){
+       	searchNow();
+         event.preventDefault();
+       });
+       $("a").click(function(event){
+       	 alert("As you can see, the link no longer took you to jquery.com");
+         event.preventDefault();
+       });
+    });
+    function searchNow(){
+    	$("#results").empty();
+    	$("#results").twitterSearch({ 
+    		term:   $("#query").val(), 
+    		bird:    false, 
+    		colorExterior: 'white', 
+    		colorInterior: 'white'
+			});
+    }
+   </script>
