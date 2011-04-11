@@ -1,5 +1,9 @@
 source 'http://rubygems.org'
 
+gem 'oauth'
+gem 'ezcrypto'
+gem 'json'
+
 gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:

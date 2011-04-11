@@ -1,6 +1,9 @@
 Lyrebd::Application.routes.draw do
-  get "signin/index"
-  match 'signin' => 'signin#index' 
+  match 'signin' => 'main#signin' 
+  match 'search' => 'main#search'
+  match 'authorize' => 'main#authorize'
+  match 'save' => 'main#save'
+  match 'logout' => 'main#logout'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

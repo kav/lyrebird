@@ -1,0 +1,82 @@
+
+<div id="header">
+	<h1>Lyrebird for <%= @user.name %></h1>
+	<input type="text" id="query" value= "<%= @user.search != '' ? @user.search : "from:kavla" %>" style="width: 250px;" />
+	<input type="button" id="search" value="Search" />
+	<input type="button" id="save" value="Save" />
+</div>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? -%>
+<script>
+// Always send the authenticity_token with ajax
+$(document).ajaxSend(function(event, request, settings) {
+    if ( settings.type == 'post' ) {
+        settings.data = (settings.data ? settings.data + "&" : "")
+            + 'authenticity_token=' + encodeURIComponent( AUTH_TOKEN );
+    }
+});</script>
+<div id="results" style="height: 400px; margin: auto;">
+Put search results here.
+</div>
+
+<div id="status">
+you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search =='' ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
+</div>
+<div id="controls" style="text-align: right;">
+<input type="button" id="stop" value="Stop Retweeting"  />
+
+</div>
+<div style="text-align: center;"><%=link_to "Logout", :action => "logout" %></div>
+
+   <script>
+	$(document).ready(function(){
+		$.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script;
+		searchNow();
+		$("#search").click(function(event){
+       		searchNow();
+			event.preventDefault();
+		});
+		$("#query").keydown(function(event){
+			if(event.which == 13)
+				searchNow();
+		});
+		$("#tweeting").click(function(event){
+      		$("#query").val($(tweeting).html());
+			searchNow();
+      		event.preventDefault();
+      	});
+		$("#save").click(function(event){
+			$.ajax({
+				url:"save",
+				data: {
+					user:"<%= @user.name %>",
+					search: $("#query").val()
+				},
+				dataType: 'html',
+				complete: function(retval){
+					searchStr = jQuery.parseJSON(retval.responseText);
+					$("#tweeting").html(searchStr.search);
+					if(searchStr.search =="")
+						$("#nothing").show();
+					else
+						$("#nothing").hide();
+				}
+			});
+			event.preventDefault();
+		});
+		$("#stop").click(function(event){
+			oldQuery = $("#query").val();
+			$("#query").val("");
+			$("#save").click();
+			$("#query").val(oldQuery);
+		});
+    });
+    function searchNow(){
+    	$("#results").empty();
+    	$("#results").twitterSearch({ 
+    		term:   $("#query").val(), 
+    		bird:    false, 
+    		colorExterior: 'white', 
+    		colorInterior: 'white'
+		});
+    }
+   </script>
