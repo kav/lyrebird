@@ -6,8 +6,8 @@ set :repository,  "gitosis@kav.la:lyrebd.git"
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :deploy_via, "remote_cache_with_project_root"
-set :project_root, "implementation/lyrebird"
+# set :deploy_via, "remote_cache_with_project_root"
+# set :project_root, "implementation/lyrebird"
 
 role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
