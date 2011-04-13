@@ -4,6 +4,10 @@ Lyrebd::Application.routes.draw do
   match 'authorize' => 'main#authorize'
   match 'save' => 'main#save'
   match 'logout' => 'main#logout'
+  
+  #triggers retweeting. cron wget this
+  match 'retweet' => 'main#retweet'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
