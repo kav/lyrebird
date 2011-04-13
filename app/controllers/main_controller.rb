@@ -16,7 +16,7 @@ class MainController < ApplicationController
       return
     end    
     consumer = get_consumer()
-    request_token = consumer.get_request_token(:oauth_callback => 'http://lyrebd.com/authorize')
+    request_token = consumer.get_request_token(:oauth_callback => 'http://localhost:3000/authorize')
     session['request_token'] = request_token
     redirect_to request_token.authorize_url
   end
@@ -61,13 +61,18 @@ class MainController < ApplicationController
   end
   
   def logout
+    reset_session
+    redirect_to "/"
+  end
+  
+  def remove_account
     if session.has_key?("user")
       user = User.find_by_name(session['user'])
       User.delete(user)
     end
-    reset_session
-    redirect_to "/"
+    logout
   end
+  
   
   def retweet
     consumer = get_consumer()
@@ -76,12 +81,11 @@ class MainController < ApplicationController
         access_token = OAuth::AccessToken.new(consumer, user.access_token, user.access_secret)
         #get tweets
         query_string = "https://search.twitter.com/search.json?q=" + user.search + "&since_id=" + user.last_tweet.to_s()
-        json = access_token.get("https://search.twitter.com/search.json?q=")
+        json = access_token.get(query_string)
         results = JSON.parse(json.body)
         results["results"].each do |tweet|
-          #retweet each
-          puts "Retweeting Tweet " + tweet["id"].to_s() + " for user " + user.name
-          access_token.post("https://api.twitter.com/1/statuses/retweet/" + tweet["id"].to_s())
+          #retweet each, should like add some logging here for response.code not in the 200 series
+          access_token.post("https://api.twitter.com/1/statuses/retweet/" + tweet["id"].to_s() + ".json")
           user.last_tweet = tweet["id"] if tweet["id"] > user.last_tweet
         end
         user.save!

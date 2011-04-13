@@ -4565,3 +4565,283 @@ Started GET "/save?user=kavla&search=from%3Akavla" for 127.0.0.1 at Mon Apr 11 1
   [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
 Rendered main/save.js.erb (0.4ms)
 Completed 200 OK in 1040ms (Views: 15.3ms | ActiveRecord: 0.8ms)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from /Users/kav/Projects/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+
+
+Started GET "/signin" for 127.0.0.1 at Tue Apr 12 22:12:16 -0700 2011
+  Processing by MainController#signin as HTML
+Redirected to http://twitter.com/oauth/authorize?oauth_token=rrZakN4tINJJ3T1kCFVxQ6IkHN5PojbWNBmakXQ
+Completed 302 Found in 505ms
+
+
+Started GET "/authorize?oauth_token=rrZakN4tINJJ3T1kCFVxQ6IkHN5PojbWNBmakXQ&oauth_verifier=Busrez0crMzGT2iPw5ehMWcDRtYJ08uOXuBsmIfZg" for 127.0.0.1 at Tue Apr 12 22:12:33 -0700 2011
+  Processing by MainController#authorize as HTML
+  Parameters: {"oauth_verifier"=>"Busrez0crMzGT2iPw5ehMWcDRtYJ08uOXuBsmIfZg", "oauth_token"=>"rrZakN4tINJJ3T1kCFVxQ6IkHN5PojbWNBmakXQ"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'lyrebd') LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') LIMIT 1
+  [1m[36mAREL (0.7ms)[0m  [1mINSERT INTO "users" ("updated_at", "last_tweet", "search", "name", "access_secret", "created_at", "access_token") VALUES ('2011-04-13 05:12:34.381779', NULL, '', 'lyrebd', 'Wyb4juoTvA2dFr4uJJpouIHLPuD8RPBMN4Q6kWluvM', '2011-04-13 05:12:34.381779', '141822202-W9ew3bR5ZeAzdf13VUTyAGiR5eii0f3aQWv6HdKU')[0m
+Redirected to http://localhost:3000/search
+Completed 302 Found in 607ms
+
+
+Started GET "/search" for 127.0.0.1 at Tue Apr 12 22:12:34 -0700 2011
+  Processing by MainController#search as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'lyrebd') LIMIT 1
+Rendered main/search.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 118ms (Views: 100.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at Tue Apr 12 22:12:34 -0700 2011
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/save?user=lyrebd&search=from%3Akavla" for 127.0.0.1 at Tue Apr 12 22:12:36 -0700 2011
+  Processing by MainController#save as JS
+  Parameters: {"user"=>"lyrebd", "search"=>"from:kavla"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."name" = 'lyrebd') LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mUPDATE "users" SET "search" = 'from:kavla', "updated_at" = '2011-04-13 05:12:36.400809' WHERE ("users"."id" = 8)[0m
+  [1m[35mUser Load (1.9ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mUPDATE "users" SET "last_tweet" = 58034177790054400, "updated_at" = '2011-04-13 05:12:36.604325' WHERE ("users"."id" = 8)[0m
+Rendered main/save.js.erb (0.4ms)
+Completed 200 OK in 244ms (Views: 21.3ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:12:46 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed   in 220ms
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each):
+  app/controllers/main_controller.rb:86:in `retweet'
+  app/controllers/main_controller.rb:79:in `each'
+  app/controllers/main_controller.rb:79:in `retweet'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (84.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (93.6ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:13:49 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mUPDATE "users" SET "updated_at" = '2011-04-13 05:13:51.922770', "last_tweet" = 58034177790054400 WHERE ("users"."id" = 7)[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+Completed   in 2843ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (1.2ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:15:29 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+Completed   in 956ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:15:39 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "users" SET "updated_at" = '2011-04-13 05:15:40.599506', "last_tweet" = 58035466850664448 WHERE ("users"."id" = 7)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "users" SET "updated_at" = '2011-04-13 05:15:41.036540', "last_tweet" = 58035466850664448 WHERE ("users"."id" = 8)
+Completed   in 1061ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.7ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:17:39 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+Completed   in 864ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.9ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:17:46 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+Completed   in 472ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.8ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:17:54 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+Completed   in 492ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from /Users/kav/Projects/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:18:18 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+Completed   in 1453ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.7ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:21:06 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58035466850664448
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58035466850664448
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+Completed   in 945ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:25:00 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+User: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58035466850664448
+1
+Retweeting Tweet 58037268476203008 for user kavla
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  UPDATE "users" SET "updated_at" = '2011-04-13 05:25:01.886717', "last_tweet" = 58037268476203008 WHERE ("users"."id" = 7)
+User: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58035466850664448
+1
+Retweeting Tweet 58037268476203008 for user lyrebd
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  UPDATE "users" SET "updated_at" = '2011-04-13 05:25:02.346038', "last_tweet" = 58037268476203008 WHERE ("users"."id" = 8)
+Completed   in 1737ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:29:19 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users"[0m
+User: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+0
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+User: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+0
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+Completed   in 861ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:30:28 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+kavla: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+0
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
+lyrebd: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+0
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+Completed   in 870ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.7ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:30:43 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+kavla: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+0
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1
+lyrebd: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+0
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1[0m
+Completed   in 448ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at Tue Apr 12 22:30:58 -0700 2011
+  Processing by MainController#retweet as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+kavla: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+1
+Retweeting Tweet 58039304529780736 for user kavla
+#<Net::HTTPForbidden:0x1041fdb78>
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'kavla') AND ("users".id <> 7) LIMIT 1[0m
+lyrebd: Query for tweets is https://search.twitter.com/search.json?q=from:kavla&since_id=58037268476203008
+1
+Retweeting Tweet 58039304529780736 for user lyrebd
+#<Net::HTTPOK:0x1041cb880>
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+Completed   in 1055ms
+
+ActionView::MissingTemplate (Missing template main/retweet with {:locale=>[:en, :en], :formats=>[:html], :handlers=>[:builder, :rjs, :erb, :rhtml, :rxml]} in view paths "/Users/kav/Projects/lyrebd/app/views", "/Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/app/views"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
