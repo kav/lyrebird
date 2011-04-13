@@ -6,7 +6,8 @@ set :repository,  "gitosis@kav.la:lyrebd.git"
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :deploy_subdir, "implementation/lyrebd"
+set :deploy_via, "remote_cache_with_project_root"
+set :project_root, "implementation/lyrebird"
 
 role :web, domain                          # Your HTTP server, Apache/etc
 role :app, domain                          # This may be the same as your `Web` server
@@ -22,31 +23,5 @@ role :db,  domain, :primary => true # This is where Rails migrations will run
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
- end
-
- require 'capistrano/recipes/deploy/strategy/remote_cache'
-
- class RemoteCacheSubdir < Capistrano::Deploy::Strategy::RemoteCache
-
-   private
-
-   def repository_cache_subdir
-     if configuration[:deploy_subdir] then
-       File.join(repository_cache, configuration[:deploy_subdir])
-     else
-       repository_cache
-     end
-   end
-
-   def copy_repository_cache
-     logger.trace "copying the cached version to #{configuration[:release_path]}"
-     if copy_exclude.empty? 
-       run "cp -RPp #{repository_cache_subdir} #{configuration[:release_path]} && #{mark}"
-     else
-       exclusions = copy_exclude.map { |e| "--exclude=\"#{e}\"" }.join(' ')
-       run "rsync -lrpt #{exclusions} #{repository_cache_subdir}/* #{configuration[:release_path]} && #{mark}"
-     end
-   end
-
  end
 
