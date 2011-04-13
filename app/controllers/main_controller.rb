@@ -16,7 +16,7 @@ class MainController < ApplicationController
       return
     end    
     consumer = get_consumer()
-    request_token = consumer.get_request_token(:oauth_callback => 'http://lyrebd.com/authorize')
+    request_token = consumer.get_request_token(:oauth_callback => url_for(:controller => "main", :action => "authorize"))
     session['request_token'] = request_token
     redirect_to request_token.authorize_url
   end
