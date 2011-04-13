@@ -105,6 +105,7 @@ class MainController < ApplicationController
       user.last_tweet = results["results"][0]["id"]
     else
       user.last_tweet = 1
+    end
     user.save!
   end
 end
