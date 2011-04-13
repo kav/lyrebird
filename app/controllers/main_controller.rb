@@ -101,7 +101,10 @@ class MainController < ApplicationController
     query_string = "https://search.twitter.com/search.json?q=" + user.search + "&rpp=1"
     json = access_token.get(query_string)
     results = JSON.parse(json.body)
-    user.last_tweet = results["results"][0]["id"]
+    if results["results"].count > 0
+      user.last_tweet = results["results"][0]["id"]
+    else
+      user.last_tweet = 1
     user.save!
   end
 end
