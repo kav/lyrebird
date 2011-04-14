@@ -33,7 +33,7 @@ class MainController < ApplicationController
     user = User.find_or_create_by_name(userinfo["screen_name"])
     user.access_token = access_token.token
     user.access_secret = access_token.secret
-    user.search = ""
+    user.search = "" if not user.search
     user.save!
     session['user'] = userinfo["screen_name"]
     redirect_to :action => "search"
