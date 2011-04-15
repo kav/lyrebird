@@ -14,13 +14,10 @@ $(document).ajaxSend(function(event, request, settings) {
             + 'authenticity_token=' + encodeURIComponent( AUTH_TOKEN );
     }
 });</script>
-<div id="results" style="height: 400px; margin: auto;">
-Put search results here.
-</div>
-
+<div id="results" style="height: 400px; margin: auto;"></div>
 <div id="status">
-you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search =='' ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
-</div>
+<h2>you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search =='' ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
+</h2></div>
 <div id="controls" style="text-align: right;">
 <input type="button" id="stop" value="Stop Retweeting"  />
 

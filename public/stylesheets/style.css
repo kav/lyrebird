@@ -41,7 +41,7 @@
 		}
 
 
-		#header, #about, #getting-started {
+		#header, #about, .list {
 			padding-left: 75px;
 			padding-right: 30px;
 		}
@@ -62,36 +62,39 @@
 
 		#getting-started {
 			border-top: 1px solid #2396b8;
+		}
+		.list {
+
 			margin-top: 25px;
 			padding-top: 15px;
 		}
-		#getting-started h1 {
+		.list h1 {
 			margin: 0;
 			font-size: 20px;
 		}
-		#getting-started h2 {
+		.list h2 {
 			margin: 0;
 			font-size: 14px;
 			font-weight: normal;
 			color: #333;
 			margin-bottom: 25px;
 		}
-		#getting-started ol {
+		.list ol, .list ul {
 			margin-left: 0;
 			padding-left: 0;
 		}
-		#getting-started li {
+		.list li {
 			font-size: 14px;
 			color: #888;
 			margin-bottom: 10px;
 		}
-		#getting-started li h2 {
+		.list li h2 {
 			margin: 0;
 			font-weight: normal;
 			font-size: 18px;
 			color: #333;
 		}
-		#getting-started li p {
+		.list li p {
 			color: #555;
 			font-size: 13px;
 		}

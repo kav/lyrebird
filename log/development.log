@@ -5362,3 +5362,74 @@ ActionController::RoutingError (No route matches "/javascripts/main.js"):
   
 
 Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from /Users/kav/Projects/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+
+
+Started GET "/signin" for 127.0.0.1 at Thu Apr 14 16:53:07 -0700 2011
+  Processing by MainController#signin as HTML
+Redirected to http://localhost:3000/search
+Completed 302 Found in 1ms
+
+
+Started GET "/search" for 127.0.0.1 at Thu Apr 14 16:53:08 -0700 2011
+  Processing by MainController#search as HTML
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'kavla') LIMIT 1
+Rendered main/search.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 82ms (Views: 17.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at Thu Apr 14 16:53:08 -0700 2011
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/search" for 127.0.0.1 at Thu Apr 14 16:54:09 -0700 2011
+  Processing by MainController#search as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."name" = 'kavla') LIMIT 1[0m
+Rendered main/search.html.erb within layouts/application (69.8ms)
+Completed 200 OK in 85ms (Views: 77.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at Thu Apr 14 16:54:09 -0700 2011
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/signin" for 127.0.0.1 at Thu Apr 14 16:55:08 -0700 2011
+  Processing by MainController#signin as HTML
+Redirected to http://localhost:3000/search
+Completed 302 Found in 1ms
+
+
+Started GET "/search" for 127.0.0.1 at Thu Apr 14 16:55:08 -0700 2011
+  Processing by MainController#search as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'kavla') LIMIT 1
+Rendered main/search.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 21ms (Views: 14.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at Thu Apr 14 16:55:08 -0700 2011
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from /Users/kav/Projects/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
