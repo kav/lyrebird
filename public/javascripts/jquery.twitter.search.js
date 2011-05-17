@@ -63,7 +63,7 @@
 			grabTweets();
 			
 			function grabTweets() {
-				var url = opts.url + opts.term;
+				var url = opts.url + escape(opts.term);
 				grabFlag = false;
 				grabbing = true;
 				// grab twitter stream

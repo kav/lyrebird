@@ -5544,3 +5544,104 @@ ActionController::RoutingError (No route matches "/javascripts/main.js"):
   
 
 Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.7ms)
+
+
+Started GET "/search" for 127.0.0.1 at 2011-05-16 20:31:11 -0700
+  Processing by MainController#search as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1
+Rendered main/search.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 42ms (Views: 17.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 20:31:11 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/search" for 127.0.0.1 at 2011-05-16 20:48:57 -0700
+  Processing by MainController#search as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1[0m
+Rendered main/search.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 28ms (Views: 12.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 20:48:57 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/save?user=scottnonnenberg&search=%23lyrebd" for 127.0.0.1 at 2011-05-16 21:01:46 -0700
+  Processing by MainController#save as JS
+  Parameters: {"user"=>"scottnonnenberg", "search"=>"#lyrebd"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'scottnonnenberg') AND ("users".id <> 9) LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  UPDATE "users" SET "search" = '#lyrebd', "updated_at" = '2011-05-17 04:01:46.275131' WHERE ("users"."id" = 9)
+Completed   in 671ms
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.count):
+  app/controllers/main_controller.rb:105:in `set_last_tweet'
+  app/controllers/main_controller.rb:57:in `save'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.6ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.5ms)
+
+
+Started GET "/save?user=scottnonnenberg&search=%23lyrebd" for 127.0.0.1 at 2011-05-16 21:04:18 -0700
+  Processing by MainController#save as JS
+  Parameters: {"user"=>"scottnonnenberg", "search"=>"#lyrebd"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'scottnonnenberg') AND ("users".id <> 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'scottnonnenberg') AND ("users".id <> 9) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "users" SET "last_tweet" = 1, "updated_at" = '2011-05-17 04:04:18.816415' WHERE ("users"."id" = 9)
+Rendered main/save.js.erb (0.5ms)
+Completed 200 OK in 316ms (Views: 25.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/retweet" for 127.0.0.1 at 2011-05-16 21:06:38 -0700
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+Completed   in 1102ms
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each):
+  app/controllers/main_controller.rb:86:in `block in retweet'
+  app/controllers/main_controller.rb:79:in `each'
+  app/controllers/main_controller.rb:79:in `retweet'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.1ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.1ms)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from block in <class:Plugin> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+
+
+Started GET "/retweet" for 127.0.0.1 at 2011-05-16 21:09:26 -0700
+  Processing by MainController#retweet as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'lyrebd') AND ("users".id <> 8) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'scottnonnenberg') AND ("users".id <> 9) LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  UPDATE "users" SET "last_tweet" = 70338949591212033, "updated_at" = '2011-05-17 04:09:28.713228' WHERE ("users"."id" = 9)
+Rendered main/retweet.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 2030ms (Views: 187.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 21:09:28 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.6ms)

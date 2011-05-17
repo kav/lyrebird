@@ -16,7 +16,7 @@ $(document).ajaxSend(function(event, request, settings) {
 });</script>
 <div id="results" style="height: 400px; margin: auto;"></div>
 <div id="status">
-<h2>you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search =='' ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
+<h2>you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search.blank? ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
 </h2></div>
 <div id="controls">
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
