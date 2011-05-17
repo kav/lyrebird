@@ -5433,3 +5433,114 @@ DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logg
 ** TwitterAuth initialized properly.
 DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
 DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /Users/kav/Projects/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from block in <class:Plugin> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateUsers (20110411001126)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("users")
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/rails/init.rb. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/config/environment.rb:5)
+DEPRECATION WARNING: RAILS_DEFAULT_LOGGER is deprecated. Please use ::Rails.logger. (called from block in <class:Plugin> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/rails/init.rb:8)
+** TwitterAuth initialized properly.
+DEPRECATION WARNING: ActionController::Routing::Routes is deprecated. Instead, use Rails.application.routes. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from <top (required)> at /Users/scottnonnenberg/Development/Rails/lyrebd/vendor/plugins/twitter-auth/config/routes.rb:1)
+
+
+Started GET "/signin" for 127.0.0.1 at 2011-05-16 20:22:59 -0700
+  Processing by MainController#signin as HTML
+Redirected to http://twitter.com/oauth/authorize?oauth_token=sCqOCOKIw6pk3SWO0YZ7t6jUXxzhwD39bvZnhcR3xZU
+Completed 302 Found in 188ms
+
+
+Started GET "/authorize?oauth_token=sCqOCOKIw6pk3SWO0YZ7t6jUXxzhwD39bvZnhcR3xZU&oauth_verifier=SKOaaZczewKRVjazXwpJgCRAIgPvW5DfPg3DPyBBMA" for 127.0.0.1 at 2011-05-16 20:23:06 -0700
+  Processing by MainController#authorize as HTML
+  Parameters: {"oauth_token"=>"sCqOCOKIw6pk3SWO0YZ7t6jUXxzhwD39bvZnhcR3xZU", "oauth_verifier"=>"SKOaaZczewKRVjazXwpJgCRAIgPvW5DfPg3DPyBBMA"}
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users"."id" FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users"."id" FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "users" ("name", "access_token", "access_secret", "search", "last_tweet", "created_at", "updated_at") VALUES ('scottnonnenberg', '46940769-4y5O4rSwaFuAMq36iCnM3G9kgXziN2QgmA5mvtHYo', 'wcDhdmHm3OjAAVKVOFS9m7Nx9eliLu4ALPeEjCip9g', '', NULL, '2011-05-17 03:23:07.258045', '2011-05-17 03:23:07.258045')[0m
+Redirected to http://localhost:3000/search
+Completed 302 Found in 636ms
+
+
+Started GET "/search" for 127.0.0.1 at 2011-05-16 20:23:07 -0700
+  Processing by MainController#search as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1
+Rendered main/search.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 38ms (Views: 14.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 20:23:07 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/search" for 127.0.0.1 at 2011-05-16 20:23:22 -0700
+  Processing by MainController#search as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1[0m
+Rendered main/search.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 31ms (Views: 14.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 20:23:23 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/search" for 127.0.0.1 at 2011-05-16 20:24:43 -0700
+  Processing by MainController#search as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1
+Rendered main/search.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 38ms (Views: 21.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 20:24:43 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.8ms)
+
+
+Started GET "/search" for 127.0.0.1 at 2011-05-16 20:25:17 -0700
+  Processing by MainController#search as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."name" = 'scottnonnenberg') LIMIT 1[0m
+Rendered main/search.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 40ms (Views: 20.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/javascripts/main.js" for 127.0.0.1 at 2011-05-16 20:25:17 -0700
+
+ActionController::RoutingError (No route matches "/javascripts/main.js"):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.7ms)
