@@ -2,6 +2,7 @@ require 'json'
 require 'cgi'
 
 class MainController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:ipn]
 
   def get_consumer
     return OAuth::Consumer.new(
