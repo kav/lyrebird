@@ -100,7 +100,7 @@ class MainController < ApplicationController
   
   def ipn
     @raw = request.raw_post
-    http = Net::HTTP.new("http://www.sandbox.paypal.com", 80)
+    http = Net::HTTP.new("www.sandbox.paypal.com", 80)
     response = http.post("/cgi-bin/webscr?cmd=_notifyvalidate",
       @raw, 'Content-Length' => "#{@raw.size}")
       
