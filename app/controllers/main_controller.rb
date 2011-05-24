@@ -97,6 +97,12 @@ class MainController < ApplicationController
     end
   end
   
+  def ipn
+    @user = User.find(params[:user_id])
+    logger.info("Url: #{request.fullpath}")
+    logger.info("Raw post: #{request.raw_post}")
+  end
+  
   #todo: move to model event code path for changes to search
   def set_last_tweet(user)
     return if user.search.blank?

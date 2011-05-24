@@ -19,16 +19,25 @@ $(document).ajaxSend(function(event, request, settings) {
 <h2>you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search.blank? ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
 </h2></div>
 <div id="controls">
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
     <span>
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="667SHPUNEGN3Y">
-        <input type="image"
-          src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif"
-          border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0"
-          src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/scr/pixel.gif"
-          width="1" height="1">
+      <input type="hidden" name="cmd" value="_xclick-subscriptions">
+      <input type="hidden" name="business" value="7CEBQHVAQVUMU">
+      <input type="hidden" name="lc" value="US">
+      <input type="hidden" name="item_name" value="Lyrebrd Monthly Subscription">
+      <input type="hidden" name="no_note" value="1">
+      <input type="hidden" name="no_shipping" value="1">
+      <input type="hidden" name="rm" value="1">
+      <input type="hidden" name="return" value="http://staging.lyrebd.com/signin">
+      <input type="hidden" name="src" value="1">
+      <input type="hidden" name="a3" value="10.00">
+      <input type="hidden" name="p3" value="1">
+      <input type="hidden" name="t3" value="M">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHosted">
+      <input type="hidden" name="notify_url" value="http://staging.lyrebd.com/ipn/<%= @user.id %>">
+      <input type="image" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
     </span>
     <span style="float:right"><input type="button" id="stop" value="Stop Retweeting"  /></span>
   </form>
