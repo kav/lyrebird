@@ -36,6 +36,7 @@ $(document).ajaxSend(function(event, request, settings) {
       <input type="hidden" name="currency_code" value="USD">
       <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHosted">
       <input type="hidden" name="notify_url" value="http://staging.lyrebd.com/ipn/<%= @user.id %>">
+      <input type="hidden" name="customer_id" value="kavla">
       <input type="image" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
       <img alt="" border="0" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
     </span>

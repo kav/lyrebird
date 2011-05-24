@@ -105,7 +105,6 @@ class MainController < ApplicationController
     http.use_ssl = true
     response = http.request_post(uri.request_uri, @raw, 'Content-Length' => "#{@raw.size}")
     
-    
     if response.body != "VERIFIED" then
       logger.error "Body: #{response.body}"
       logger.error "Url: #{request.fullpath}"
@@ -113,6 +112,34 @@ class MainController < ApplicationController
     else
       @user = User.find(params[:user_id])
       logger.info "Ready to process payments for user #{@user.id}"
+
+      #subscr_cancel - Subscription canceled
+      # do nothing
+      
+      #subscr_eot - Subscription expired
+      # remove permission
+      
+      #subscr_failed - Subscription signup failed
+      # send nice "you need some help" message
+      
+      #subscr_modify - Subscription modified
+      # error - send mail to admins
+      
+      #subscr_payment - Subscription payment received
+      # do nothing
+      
+      #subscr_signup - Subscription started
+      # add permission
+      
+      #user.active?
+      #user.last_paid
+      
+      # TODO: 
+      # Check the payment_status is Completed 
+      # Check that txn_id has not been previously processed 
+      # Check that receiver_email is your Primary PayPal email 
+      # Check that payment_amount/payment_currency are correct 
+      # Process payment 
     end
   end
   
