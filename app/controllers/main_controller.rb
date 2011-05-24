@@ -99,9 +99,18 @@ class MainController < ApplicationController
   end
   
   def ipn
-    @user = User.find(params[:user_id])
-    logger.info("Url: #{request.fullpath}")
-    logger.info("Raw post: #{request.raw_post}")
+    @raw = request.raw_post
+    http = Net::HTTP.new("http://www.sandbox.paypal.com", 80)
+    response = http.post("/cgi-bin/webscr?cmd=_notifyvalidate",
+      @raw, 'Content-Length' => "#{@raw.size}")
+      
+    if response.body != "VERIFIED" then
+      logger.error "Url: #{request.fullpath}"
+      logger.error "Raw post: #{@raw}"
+    else
+      @user = User.find(params[:user_id])
+      logger.info "Ready to process payments for user #{@user.id}"
+    end
   end
   
   #todo: move to model event code path for changes to search
