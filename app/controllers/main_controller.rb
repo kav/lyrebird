@@ -99,13 +99,15 @@ class MainController < ApplicationController
   end
   
   def ipn
-    @raw = request.raw_post
-    uri = URI.parse("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notifyvalidate")
+    @raw = request.raw_post + "&cmd=_notify-validate"
+    uri = URI.parse("https://www.sandbox.paypal.com/cgi-bin/webscr")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     response = http.request_post(uri.request_uri, @raw, 'Content-Length' => "#{@raw.size}")
-      
+    
+    
     if response.body != "VERIFIED" then
+      logger.error "Response url: #{response.}"
       logger.error "Body: #{response.body}"
       logger.error "Url: #{request.fullpath}"
       logger.error "Raw post: #{@raw}"
