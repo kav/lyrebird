@@ -105,6 +105,7 @@ class MainController < ApplicationController
       @raw, 'Content-Length' => "#{@raw.size}")
       
     if response.body != "VERIFIED" then
+      logger.error "Body: #{response.body}"
       logger.error "Url: #{request.fullpath}"
       logger.error "Raw post: #{@raw}"
     else
