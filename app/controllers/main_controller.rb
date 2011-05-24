@@ -102,6 +102,7 @@ class MainController < ApplicationController
     @raw = request.raw_post
     uri = URI.parse("http://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notifyvalidate")
     http = Net::HTTP.new(uri.host, uri.port)
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.use_ssl = true
     response = http.request_post(uri.request_uri, @raw)
       
