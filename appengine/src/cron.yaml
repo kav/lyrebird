@@ -1,4 +1,0 @@
-cron:
-- description: ReTweet new stuff
-  url: /rt-cron/
-  schedule: every 5 minutes
