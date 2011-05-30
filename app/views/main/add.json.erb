@@ -1,7 +1,7 @@
 {
-  "success": "<%= @success %>"
+  "success": <%= @success %>
   <% if @success %>
-  	"search": "<%= @search.text %>",
-  	"id": "<%= @search.id %>"
+  	, "search": "<%= @search.text %>",
+  	"search_id": "<%= @search.id %>"
   <% end %>
 }

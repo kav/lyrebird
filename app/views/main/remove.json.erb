@@ -1,3 +1,6 @@
 {
-  "success": "<%= @success %>"
+  "success": <%= @success %>
+  <% if @success then %>
+    , "search_id": "<%= @search.id %>"
+  <% end %>
 }

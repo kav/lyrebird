@@ -1,7 +1,10 @@
 
 <div id="header">
 	<h1>Lyrebird for <%= @user.name %></h1>
-	<input type="text" id="query" value= "<%= @user.search.blank? ? "Lyrebird" : @user.search %>" style="width: 250px;" />
+	<input type="text" id="query"
+	  value="<%= @user.searches.empty? ? "Lyrebird" : @user.searches.first.text %>"
+	  style="width: 250px;" />
+	  
 	<input type="button" id="search" value="Search" />
 	<input type="button" id="save" value="Retweet" />
 	<br>
@@ -21,10 +24,25 @@ $(document).ajaxSend(function(event, request, settings) {
             + 'authenticity_token=' + encodeURIComponent( AUTH_TOKEN );
     }
 });</script>
-<div id="results" style="height: 400px; margin: auto;"></div>
+<div id="results" style="margin-top: 5px; height: 390px; margin: auto;"></div>
 <div id="status">
-<h2>you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search.blank? ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
-</h2></div>
+  <h2>
+    you are retweeting:
+    <span id="nothing" style="color: gray; visibility:
+      <%= @user.searches.empty? ? 'visible' : 'hidden' %> ">Nothing</span>
+  </h2>
+
+  <ul id="searches">
+  <% @user.searches.each do |search| %>
+    <li id="<%= search.id %>">
+      <a href="." class="tweeting"><%= search.text %></a>
+      <input type="button" class="stop" value="Stop Retweeting"/>
+    </li>
+  <% end %>
+  </ul>
+  
+</div>
+<div align="right">
 <% if not @user.paid %>
 <div id="controls">
   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
@@ -52,31 +70,33 @@ $(document).ajaxSend(function(event, request, settings) {
   <span id="trial">Trial: <%= @days_remaining %> day<%= "s" if @days_remaining != 1 %> remaining.
 </div>
 <% end %>
-    <span style="float:right"><input type="button" id="stop" value="Stop Retweeting"  /></span>
-<div style="text-align: center;"><%=link_to "Logout", :action => "logout" %></div>
-   <script>
+</div>
+<div style="text-align: center;"><%=link_to "Logout", :action => "logout" %></div>  
+<script>
 	$(document).ready(function(){
+		
 		$.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script;
 		searchNow();
+		
 		$("#search").click(function(event){
-       		searchNow();
+      searchNow();
 			event.preventDefault();
 		});
 		$("#query").keydown(function(event){
 			if(event.which == 13)
-				searchNow();
+			searchNow();
 		});
-		$("#tweeting").click(function(event){
-      $("#query").val($(tweeting).html());
+		$(".tweeting").click(function(event){
+      $('#query').val($(this).html());
 			searchNow();
       event.preventDefault();
     });
 		$("#save").click(function(event){
-		  saveSearch(generateSearch());
+		  addSearch(generateSearch());
 			event.preventDefault();
 		});
-		$("#stop").click(function(event){
-			saveSearch("");
+		$(".stop").live('click', function(event){
+			removeSearch($(this).closest('li').attr('id'));
 		});
   });
   
@@ -85,6 +105,7 @@ $(document).ajaxSend(function(event, request, settings) {
   	$("#results").twitterSearch({ 
   		term:   generateSearch(), 
   		bird:    false, 
+  		title: "",
   		colorExterior: 'white', 
   		colorInterior: 'white'
 	  });
@@ -98,6 +119,7 @@ $(document).ajaxSend(function(event, request, settings) {
 	  }
 	  return query;
 	}
+	
 	function splitlist(){
 	  var names = $("#users").val().split(",");
 	  var include;
@@ -110,23 +132,44 @@ $(document).ajaxSend(function(event, request, settings) {
 	  }
 	  return names.join((include) ? " OR " : " ");
 	}
-	function saveSearch(search){
+	
+	function addSearch(search){
 	  $.ajax({
-		url:"save",
+		url:"add.json",
 		data: {
 			user:"<%= @user.name %>",
 			search: search
 		},
-		dataType: 'html',
 		complete: function(retval){
-			searchStr = jQuery.parseJSON(retval.responseText);
-			$("#tweeting").html(searchStr.search);
-			if(searchStr.search =="")
-				$("#nothing").show();
-			else
-				$("#nothing").hide();
-		  }
+			json = jQuery.parseJSON(retval.responseText);
+			if (json.success) {        
+  			$("#searches").append($('<li id="' + json.search_id + '">'
+  	      + '<a href="." id="tweeting">' + json.search + '</a>'
+          + ' <input type="button" class="stop" value="Stop Retweeting"/>'
+          + '</li>'));
+				$("#nothing").css('visibility', 'hidden');
+      }
+	  }
+	  });
+	}
+  
+  function removeSearch(search_id){
+	  $.ajax({
+		url:"remove.json",
+		data: {
+			user:"<%= @user.name %>",
+			search_id: search_id
+		},
+		complete: function(retval){
+			json = jQuery.parseJSON(retval.responseText);
+      if (json.success) {
+        $('#searches li#' + json.search_id).remove();
+        if (!$('#searches li').length) {
+				  $("#nothing").css('visibility', 'visible');         
+        }
+      }
+	  }
 	  });
   }
     
-   </script>
+</script>

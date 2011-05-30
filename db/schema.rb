@@ -12,12 +12,18 @@
 
 ActiveRecord::Schema.define(:version => 20110530060847) do
 
+  create_table "searches", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "text"
+    t.string   "last_tweet"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "access_token"
     t.string   "access_secret"
-    t.string   "search"
-    t.integer  "last_tweet"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "paid",          :default => false

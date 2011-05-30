@@ -50,10 +50,16 @@ class MainController < ApplicationController
     # if the user existed before we took money give them
     # a trial starting 6/1
     if not @user.paid
-      payments_start = "6/1/2011".to_date
-      trial_start = @user.created_at <  payments_start ? payments_start : @user.created_at
+      payments_start = "June 1 2011".to_date
+
+      if @user.created_at.to_date < payments_start then
+        trial_start = payments_start
+      else
+        trial_start = @user.created_at.to_date
+      end
+
       trial_ends = trial_start + 14.days
-      @days_remaining = trial_ends - Date.today
+      @days_remaining = (trial_ends - Date.today).to_i
       if @days_remaining < 0
         @trial_over = true
         @days_remaining = 0
@@ -67,31 +73,33 @@ class MainController < ApplicationController
   
   # Search management
   def add
+    @success = false
     @user = User.find_by_name(params[:user])
     search_text = params[:search]
     
-    if !search.blank? then 
-      @search = @user.create(:text => search)      
+    if !search_text.blank? && !@user.searches.find_by_text(search_text) then 
+      @search = @user.searches.create(:text => search_text)      
       @success = @search.valid?
       set_last_tweet(@search)
     end
 
     respond_to do |format|
-      format.js
+      format.json
     end
   end
   
   def remove
+    @success = false
     @user = User.find_by_name(params[:user])
     search_id = params[:search_id]
-    @search = user.searches.find_by_id(search_id)
+    @search = @user.searches.find_by_id(search_id)
     if @search then
       @search.destroy
       @success = true
     end
     
     respond_to do |format|
-      format.js
+      format.json
     end
   end
   
@@ -181,11 +189,8 @@ class MainController < ApplicationController
   
   #todo: move to model event code path for changes to search
   def set_last_tweet(search)
-    return if user.search.blank?
-    
-    consumer = get_consumer()
-    access_token =
-      OAuth::AccessToken.new(consumer, search.user.access_token, search.user.access_secret)
+    access_token = OAuth::AccessToken.new(get_consumer(), search.user.access_token,
+      search.user.access_secret)
       
     query_string = "https://search.twitter.com/search.json?q=#{CGI.escape(search.text)}&rpp=1"
     json = access_token.get(query_string)
@@ -194,7 +199,7 @@ class MainController < ApplicationController
     if results.has_key?("results") && results["results"].count > 0
       search.last_tweet = results["results"][0]["id_str"]
     else
-      search.last_tweet = 1
+      search.last_tweet = "1"
     end
     
     search.save
