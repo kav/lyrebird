@@ -20,6 +20,16 @@ test:
 #  database: db/production.sqlite3
 #  pool: 5
 #  timeout: 5000
+staging:
+    adapter: mysql
+    encoding: utf8
+    reconnect: false
+    database: lyrebird_staging
+    pool: 5
+    username: rails
+    password: "3.times"
+    host: localhost
+    timeout: 5000
 
 production:
     adapter: mysql
