@@ -51,15 +51,36 @@ class MainController < ApplicationController
     end	
   end
   
-  def save
+  # Search management
+  def add
     @user = User.find_by_name(params[:user])
-    @user.search = params[:search]
-    @user.save!
-    set_last_tweet(@user) if not @user.search.blank?
+    search_text = params[:search]
+    
+    if !search.blank? then 
+      @search = @user.create(:text => search)      
+      @success = @search.valid?
+      set_last_tweet(@search)
+    end
+
     respond_to do |format|
       format.js
     end
   end
+  
+  def remove
+    @user = User.find_by_name(params[:user])
+    search_id = params[:search_id]
+    @search = user.searches.find_by_id(search_id)
+    if @search then
+      @search.destroy
+      @success = true
+    end
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   
   def logout
     reset_session
@@ -78,22 +99,23 @@ class MainController < ApplicationController
   def retweet
     consumer = get_consumer()
     User.all.each do |user|
-      if not user.search.blank?
-        access_token = OAuth::AccessToken.new(consumer, user.access_token, user.access_secret)
+      access_token = OAuth::AccessToken.new(consumer, user.access_token, user.access_secret)
+
+      user.searches.each do |search|
         #get tweets
         query_string = "https://search.twitter.com/search.json?q=#{CGI.escape(user.search)}&since_id=#{user.last_tweet}"
         json = access_token.get(query_string)
         results = JSON.parse(json.body)
 
-        if results.has_key?("results")
+        if results.has_key?("results") then
           results["results"].each do |tweet|
             #retweet each, should like add some logging here for response.code not in the 200 series
             access_token.post("https://api.twitter.com/1/statuses/retweet/#{tweet["id"]}.json")
-            user.last_tweet = tweet["id"] if tweet["id"] > user.last_tweet
+            search.last_tweet = tweet["id"] if tweet["id"] > search.last_tweet
           end
         end
 
-        user.save!
+        search.save
       end
     end
   end
@@ -144,21 +166,23 @@ class MainController < ApplicationController
   end
   
   #todo: move to model event code path for changes to search
-  def set_last_tweet(user)
+  def set_last_tweet(search)
     return if user.search.blank?
     
     consumer = get_consumer()
-    access_token = OAuth::AccessToken.new(consumer, user.access_token, user.access_secret)
-    query_string = "https://search.twitter.com/search.json?q=#{CGI.escape(user.search)}&rpp=1"
+    access_token =
+      OAuth::AccessToken.new(consumer, search.user.access_token, search.user.access_secret)
+      
+    query_string = "https://search.twitter.com/search.json?q=#{CGI.escape(search.text)}&rpp=1"
     json = access_token.get(query_string)
     results = JSON.parse(json.body)
     
     if results.has_key?("results") && results["results"].count > 0
-      user.last_tweet = results["results"][0]["id"]
+      search.last_tweet = results["results"][0]["id_str"]
     else
-      user.last_tweet = 1
+      search.last_tweet = 1
     end
     
-    user.save!
+    search.save
   end
 end

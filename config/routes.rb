@@ -2,7 +2,10 @@ Lyrebd::Application.routes.draw do
   match 'signin' => 'main#signin' 
   match 'search' => 'main#search'
   match 'authorize' => 'main#authorize'
-  match 'save' => 'main#save'
+  
+  match 'add' => 'main#add'
+  match 'remove' => 'main#remove'
+  
   match 'logout' => 'main#logout'
   
   match 'ipn/:user_id' => 'main#ipn'

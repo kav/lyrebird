@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
-  validates :name, :access_token, :access_secret, :presence => true
+  validates_presence_of :name, :access_token, :access_secret
   validates_uniqueness_of :name
+  
+  has_many :searches
 end
