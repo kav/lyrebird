@@ -3,6 +3,8 @@ set :application, "Lyrebird"
 set :domain, "kav.la"
 set :repository,  "gitosis@kav.la:lyrebd.git"
 
+set :rails_env, 'staging'
+
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
