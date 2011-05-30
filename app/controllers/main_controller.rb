@@ -49,14 +49,15 @@ class MainController < ApplicationController
     
     # if the user existed before we took money give them
     # a trial starting 6/1
-    payments_start = "6/1/2011".to_date
-    trial_start = @user.created_at <  payments_start ? payments_start : @user.created_at
-    trial_ends = trial_start + 14.days
-    
-    @days_remaining = trial_ends - Date.today
-    if @days_remaining < 0
-      @trial_over = true
-      @days_remaining = 0
+    if not @user.paid
+      payments_start = "6/1/2011".to_date
+      trial_start = @user.created_at <  payments_start ? payments_start : @user.created_at
+      trial_ends = trial_start + 14.days
+      @days_remaining = trial_ends - Date.today
+      if @days_remaining < 0
+        @trial_over = true
+        @days_remaining = 0
+      end
     end
     
     respond_to do |format|

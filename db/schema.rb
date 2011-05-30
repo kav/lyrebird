@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411001126) do
+ActiveRecord::Schema.define(:version => 20110530060847) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110411001126) do
     t.integer  "last_tweet"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "paid",          :default => false
   end
 
 end

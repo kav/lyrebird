@@ -25,6 +25,7 @@ $(document).ajaxSend(function(event, request, settings) {
 <div id="status">
 <h2>you are retweeting: <span id="nothing" style="color: gray; visibility: <%=@user.search.blank? ? 'visible' : 'hidden'  %> ">Nothing</span><a href="." id="tweeting"><%= @user.search %></a>
 </h2></div>
+<% if not @user.paid %>
 <div id="controls">
   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
     <span>
@@ -47,10 +48,11 @@ $(document).ajaxSend(function(event, request, settings) {
       <input type="image" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
       <img alt="" border="0" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
     </span>
-    <span style="float:right"><input type="button" id="stop" value="Stop Retweeting"  /></span>
   </form>
   <span id="trial">Trial: <%= @days_remaining %> day<%= "s" if @days_remaining != 1 %> remaining.
 </div>
+<% end %>
+    <span style="float:right"><input type="button" id="stop" value="Stop Retweeting"  /></span>
 <div style="text-align: center;"><%=link_to "Logout", :action => "logout" %></div>
    <script>
 	$(document).ready(function(){
