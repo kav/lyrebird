@@ -1,7 +1,7 @@
 
 <div id="header">
 	<h1>Lyrebird for <%= @user.name %></h1>
-	<input type="text" id="query" value= "<%= @user.search != '' ? @user.search : "Lyrebird" %>" style="width: 250px;" />
+	<input type="text" id="query" value= "<%= @user.search.blank? ? "Lyrebird" : @user.search %>" style="width: 250px;" />
 	<input type="button" id="search" value="Search" />
 	<input type="button" id="save" value="Retweet" />
 	<br>
