@@ -55,14 +55,35 @@ class MainController < ApplicationController
       trial_ends = trial_start + 14.days
       @days_remaining = trial_ends - Date.today
       if @days_remaining < 0
-        @trial_over = true
+        trial_over = true
         @days_remaining = 0
       end
+    end
+    
+    if trial_over 
+      redirect_to :action => "expired"
+      return
     end
     
     respond_to do |format|
     	format.html
     end	
+  end
+  
+  def expired
+    if not session.has_key?("user")
+      redirect_to :action => "signin"
+      return
+    end
+    if user.paid
+      redirect_to "search"
+      return
+    end
+    
+    @user = User.find_by_name(session['user'])
+    respond_to do |format|
+      format.html
+    end
   end
   
   def save

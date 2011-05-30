@@ -4,7 +4,7 @@ Lyrebd::Application.routes.draw do
   match 'authorize' => 'main#authorize'
   match 'save' => 'main#save'
   match 'logout' => 'main#logout'
-  
+  match 'expired' => 'main#expired'
   match 'ipn/:user_id' => 'main#ipn'
   
   #triggers retweeting. cron wget this
