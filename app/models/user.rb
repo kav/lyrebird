@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name
   
   has_many :searches
+  validates_inclusion_of :paid, :in => [true, false]
 end
