@@ -65,7 +65,7 @@ $(document).ajaxSend(function(event, request, settings) {
 			if(event.which == 13)
 			searchNow();
 		});
-		$(".tweeting").click(function(event){
+		$(".tweeting").live('click', function(event){
       $('#query').val($(this).html());
 			searchNow();
       event.preventDefault();
@@ -123,7 +123,7 @@ $(document).ajaxSend(function(event, request, settings) {
 			json = jQuery.parseJSON(retval.responseText);
 			if (json.success) {        
   			$("#searches").append($('<li id="' + json.search_id + '">'
-  	      + '<a href="." id="tweeting">' + json.search + '</a>'
+  	      + '<a href="." class="tweeting">' + json.search + '</a>'
           + ' <input type="button" class="stop" value="Stop Retweeting"/>'
           + '</li>'));
 				$("#nothing").css('visibility', 'hidden');
