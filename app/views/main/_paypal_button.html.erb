@@ -1,22 +1,7 @@
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-  <span>
-    <input type="hidden" name="cmd" value="_xclick-subscriptions">
-    <input type="hidden" name="business" value="7CEBQHVAQVUMU">
-    <input type="hidden" name="lc" value="US">
-    <input type="hidden" name="item_name" value="Lyrebrd Monthly Subscription">
-    <input type="hidden" name="no_note" value="1">
-    <input type="hidden" name="no_shipping" value="1">
-    <input type="hidden" name="rm" value="1">
-    <input type="hidden" name="return" value="http://staging.lyrebd.com/signin">
-    <input type="hidden" name="src" value="1">
-    <input type="hidden" name="a3" value="5.00">
-    <input type="hidden" name="p3" value="1">
-    <input type="hidden" name="t3" value="M">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribe_LG.gif:NonHosted">
-    <input type="hidden" name="notify_url" value="http://staging.lyrebd.com/ipn/<%= @user.id %>">
-    <input type="hidden" name="customer_id" value="kavla">
-    <input type="image" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <img alt="" border="0" src="https://www.sandbox.paypal.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
-  </span>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="RZ2YPSBSUX2YL">
+  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  <input type="hidden" name="notify_url" value="http://staging.lyrebd.com/ipn/<%= @user.id %>">
 </form>
