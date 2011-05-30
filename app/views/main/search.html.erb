@@ -37,7 +37,7 @@ $(document).ajaxSend(function(event, request, settings) {
       <input type="hidden" name="rm" value="1">
       <input type="hidden" name="return" value="http://staging.lyrebd.com/signin">
       <input type="hidden" name="src" value="1">
-      <input type="hidden" name="a3" value="10.00">
+      <input type="hidden" name="a3" value="5.00">
       <input type="hidden" name="p3" value="1">
       <input type="hidden" name="t3" value="M">
       <input type="hidden" name="currency_code" value="USD">
@@ -49,6 +49,7 @@ $(document).ajaxSend(function(event, request, settings) {
     </span>
     <span style="float:right"><input type="button" id="stop" value="Stop Retweeting"  /></span>
   </form>
+  <span id="trial">Trial: <%= @days_remaining %> day<%= "s" if @days_remaining != 1 %> remaining.
 </div>
 <div style="text-align: center;"><%=link_to "Logout", :action => "logout" %></div>
    <script>
