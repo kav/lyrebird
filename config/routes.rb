@@ -5,6 +5,8 @@ Lyrebd::Application.routes.draw do
   match 'save' => 'main#save'
   match 'logout' => 'main#logout'
   
+  match 'ipn/:user_id' => 'main#ipn'
+  
   #triggers retweeting. cron wget this
   match 'retweet' => 'main#retweet'
   

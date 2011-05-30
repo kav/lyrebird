@@ -2,6 +2,7 @@ require 'json'
 require 'cgi'
 
 class MainController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:ipn]
 
   def get_consumer
     return OAuth::Consumer.new(
@@ -94,6 +95,51 @@ class MainController < ApplicationController
 
         user.save!
       end
+    end
+  end
+  
+  def ipn
+    @raw = request.raw_post
+    uri = URI.parse("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    response = http.request_post(uri.request_uri, @raw, 'Content-Length' => "#{@raw.size}")
+    
+    if response.body != "VERIFIED" then
+      logger.error "Body: #{response.body}"
+      logger.error "Url: #{request.fullpath}"
+      logger.error "Raw post: #{@raw}"
+    else
+      @user = User.find(params[:user_id])
+      logger.info "Ready to process payments for user #{@user.id}"
+
+      #subscr_cancel - Subscription canceled
+      # do nothing
+      
+      #subscr_eot - Subscription expired
+      # remove permission
+      
+      #subscr_failed - Subscription signup failed
+      # send nice "you need some help" message
+      
+      #subscr_modify - Subscription modified
+      # error - send mail to admins
+      
+      #subscr_payment - Subscription payment received
+      # do nothing
+      
+      #subscr_signup - Subscription started
+      # add permission
+      
+      #user.active?
+      #user.last_paid
+      
+      # TODO: 
+      # Check the payment_status is Completed 
+      # Check that txn_id has not been previously processed 
+      # Check that receiver_email is your Primary PayPal email 
+      # Check that payment_amount/payment_currency are correct 
+      # Process payment 
     end
   end
   
